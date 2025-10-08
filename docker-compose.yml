@@ -1,0 +1,61 @@
+services:
+  laravel_app:
+    build:
+      context: ./php82
+    container_name: laravel_app
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - wd_net
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./app:/var/www/html
+      - caddy_data:/data
+      - caddy_config:/config
+
+    networks:
+      - wd_net
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - wd_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - mysql
+    networks:
+      - wd_net
+
+networks:
+  laravel_net:
+  wd_net:
+
+volumes:
+  mysql_data:
+  caddy_data:
+  caddy_config:

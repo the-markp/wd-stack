@@ -1,0 +1,23 @@
+fox-node2.local {
+    root * /var/www/html
+    file_server  
+
+    @publicAssets path_regexp assets ^/(css|js|images|fonts|assets|market_assets|landing|installer|vendor)/(.*)$
+    rewrite @publicAssets /public/{re.assets.1}/{re.assets.2}
+
+    php_fastcgi laravel_app:9000
+}
+
+erp.endonalaw.com {
+    root * /var/www/html
+    file_server
+
+    @publicAssets path_regexp assets ^/(css|js|images|fonts|assets|market_assets|landing|installer|vendor)/(.*)$
+    rewrite @publicAssets /public/{re.assets.1}/{re.assets.2}
+    
+    php_fastcgi laravel_app:9000
+}
+
+www.trulyyours.net {
+    reverse_proxy http://10.1.1.250:80
+}
