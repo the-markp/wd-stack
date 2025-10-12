@@ -1,3 +1,8 @@
+# Use Staging CA for testing to avoid hitting rate limits
+{
+    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
 fox-node2.local {
     root * /var/www/html
     file_server  

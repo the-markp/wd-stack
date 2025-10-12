@@ -2,10 +2,10 @@
 
 # === CONFIGURATION ===
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-BACKUP_DIR="/home/user/backups"
+BACKUP_DIR="/home/foxriver/backups"
 CONTAINER_NAME="mysql_db"
 MYSQL_USER="root"
-MYSQL_PASSWORD="UserSecure123"
+MYSQL_PASSWORD="rootpassword"
 RETENTION_DAYS=7
 RCLONE_REMOTE="gdrive"
 RCLONE_DEST="MySQLBackups"
@@ -43,6 +43,6 @@ echo -e "MySQL Backup Report
 
 Backup File: $(basename $BACKUP_FILE)
 Status: $STATUS_MSG
-Timestamp: $TIMESTAMP" | mail -s "MySQL Backup Completed" $EMAIL
+# Timestamp: $TIMESTAMP" | mail -s "MySQL Backup Completed" $EMAIL
 
 echo "Backup completed successfully at $TIMESTAMP"
