@@ -1,8 +1,9 @@
-# Use Staging CA for testing to avoid hitting rate limits
-{
-    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
-}
+# Use Staging CA for testing to avoid hitting rate limits       # Check
+#{
+#    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+#}
 
+# Check
 fox-node2.local {
     root * /var/www/html
     file_server  
@@ -13,6 +14,7 @@ fox-node2.local {
     php_fastcgi laravel_app:9000
 }
 
+# Check
 erp.endonalaw.com {
     root * /var/www/html
     file_server
@@ -23,6 +25,7 @@ erp.endonalaw.com {
     php_fastcgi laravel_app:9000
 }
 
+# Check
 www.trulyyours.net {
     reverse_proxy http://10.1.1.250:80
 }
