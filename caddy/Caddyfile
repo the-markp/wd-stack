@@ -26,6 +26,7 @@ erp.endonalaw.com {
 }
 
 # Check
-www.trulyyours.net {
-    reverse_proxy http://10.1.1.250:80
+http://www.trulyyours.net {
+    reverse_proxy 10.1.1.250:80
 }
+

@@ -17,3 +17,14 @@ Containerized stack with Caddy, PHP, MySQL, PhpMyAdmin
 5. Add cron job to run daily backup at 2AM
 `sudo crontab -e`
 `0 2 * * * /path/to/your/backup_script.sh`
+
+# migrating to another host
+
+1. Export database using mysqldump or phpmyadmin
+2. Compress the source code
+3. Start the stack.
+4. If 500 Server error occurs, fix permissions:
+`docker exec -it <container_name_or_id> bash`
+`chown -R www-data:www-data storage bootstrap/cache`
+`chmod -R 775 storage bootstrap/cache`
+4. Import database using mysql command or phpmyadmin
